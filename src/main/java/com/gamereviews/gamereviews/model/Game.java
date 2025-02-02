@@ -28,6 +28,9 @@ public class Game {
     @Column(name = "average_audience_score", nullable = false)
     private double averageAudienceScore;
 
+    @Column(name = "image", nullable = false)
+    private String image;
+
     // Getters and Setters
     public Long getId() {
         return id;
@@ -66,6 +69,14 @@ public class Game {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 

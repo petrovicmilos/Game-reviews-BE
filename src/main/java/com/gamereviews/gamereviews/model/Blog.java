@@ -26,6 +26,9 @@ public class Blog {
     @Column(name = "dislikes", nullable = false)
     private int dislikes;
 
+    @Column(name = "image", nullable = false)
+    private String image;
+
     // Getters and Setters
     public Long getId() {
         return id;
@@ -73,5 +76,13 @@ public class Blog {
 
     public void setDislikes(int dislikes) {
         this.dislikes = dislikes;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
