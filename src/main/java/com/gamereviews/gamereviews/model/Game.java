@@ -22,6 +22,15 @@ public class Game {
     @Column(name = "description", length = 1000)
     private String description;
 
+    @Column(name = "developer", nullable = false)
+    private String developer;
+
+    @Column(name = "publisher", nullable = false)
+    private String publisher;
+
+    @Column(name = "platforms", nullable = false)
+    private String platforms;
+
     @Column(name = "average_critic_score", nullable = false)
     private double averageCriticScore;
 
@@ -71,6 +80,30 @@ public class Game {
         this.description = description;
     }
 
+    public String getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(String developer) {
+        this.developer = developer;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getPlatforms() {
+        return platforms;
+    }
+
+    public void setPlatforms(String platforms) {
+        this.platforms = platforms;
+    }
+
     public String getImage() {
         return image;
     }
@@ -78,7 +111,6 @@ public class Game {
     public void setImage(String image) {
         this.image = image;
     }
-
 
     public double getAverageCriticScore() {
         return averageCriticScore;

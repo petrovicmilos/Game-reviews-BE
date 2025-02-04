@@ -19,6 +19,9 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "role", nullable = false)
+    private String role;
+
     @Column(name = "is_critic", nullable = false)
     private boolean isCritic; // True for critics, false for audience
 
@@ -61,5 +64,13 @@ public class User {
 
     public void setCritic(boolean isCritic) {
         this.isCritic = isCritic;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
