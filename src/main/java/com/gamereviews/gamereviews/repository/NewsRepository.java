@@ -12,4 +12,7 @@ import java.util.List;
 public interface NewsRepository extends JpaRepository<News, Long> {
     @Query(value = "SELECT * FROM news ORDER BY posting_date DESC LIMIT 3", nativeQuery = true)
     List<News> findLatestNews();
+
+    List<News> findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(String title, String content);
+
 }

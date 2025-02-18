@@ -99,6 +99,11 @@ public class NewsController {
         }
     }
 
+    @GetMapping("/search")
+    public List<News> searchNews(@RequestParam String query) {
+        return newsRepository.findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(query, query);
+    }
+
     private String saveImage(MultipartFile image) throws IOException {
         String uploadDir = System.getProperty("user.dir") + "/uploads/";
         File uploadPath = new File(uploadDir);

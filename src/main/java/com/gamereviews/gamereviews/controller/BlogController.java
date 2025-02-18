@@ -67,6 +67,11 @@ public class BlogController {
         }
     }
 
+    @GetMapping("/search")
+    public List<Blog> searchBlogs(@RequestParam String query) {
+        return blogRepository.findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(query, query);
+    }
+
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Blog> updateBlog(@PathVariable Long id, @ModelAttribute Blog blogDetails, @RequestParam(value = "image", required = false) MultipartFile imageFile) {

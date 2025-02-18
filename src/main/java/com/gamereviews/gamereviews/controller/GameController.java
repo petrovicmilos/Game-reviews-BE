@@ -36,6 +36,11 @@ public class GameController {
 //        return gameRepository.save(game);
 //    }
 
+    @GetMapping("/search")
+    public List<Game> searchGames(@RequestParam String query) {
+        return gameRepository.findByTitleContainingIgnoreCase(query);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Game> updateGame(@PathVariable Long id, @RequestBody Game gameDetails) {
         return gameRepository.findById(id).map(game -> {
