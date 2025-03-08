@@ -32,10 +32,10 @@ public class Game {
     private String platforms;
 
     @Column(name = "average_critic_score", nullable = false)
-    private double averageCriticScore;
+    private int averageCriticScore;
 
     @Column(name = "average_audience_score", nullable = false)
-    private double averageAudienceScore;
+    private int averageAudienceScore;
 
     @Column(name = "image", nullable = false)
     private String image;
@@ -112,19 +112,19 @@ public class Game {
         this.image = image;
     }
 
-    public double getAverageCriticScore() {
+    public int getAverageCriticScore() {
         return averageCriticScore;
     }
 
-    public void setAverageCriticScore(double averageCriticScore) {
+    public void setAverageCriticScore(int averageCriticScore) {
         this.averageCriticScore = averageCriticScore;
     }
 
-    public double getAverageAudienceScore() {
+    public int getAverageAudienceScore() {
         return averageAudienceScore;
     }
 
-    public void setAverageAudienceScore(double averageAudienceScore) {
+    public void setAverageAudienceScore(int averageAudienceScore) {
         this.averageAudienceScore = averageAudienceScore;
     }
 }

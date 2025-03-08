@@ -2,6 +2,8 @@ package com.gamereviews.gamereviews.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "reviews")
 public class Review {
@@ -24,6 +26,12 @@ public class Review {
 
     @Column(name = "score", nullable = false)
     private int score;
+
+    @Column(name = "is_critic", nullable = false)
+    private boolean isCritic;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     // Getters and Setters
     public Long getId() {
@@ -64,5 +72,21 @@ public class Review {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public boolean isCritic() {
+        return isCritic;
+    }
+
+    public void setCritic(boolean critic) {
+        isCritic = critic;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
