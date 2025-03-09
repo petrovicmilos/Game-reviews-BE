@@ -17,4 +17,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("SELECT r, u.username FROM Review r JOIN r.user u WHERE r.game.id = :gameId ORDER BY r.id DESC")
     List<Object[]> findTop4ByGameIdOrderByIdDesc(@Param("gameId") Long gameId);
 
+    List<Review> findByGameId(Long gameId);
+
 }

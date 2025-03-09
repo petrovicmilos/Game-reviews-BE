@@ -92,4 +92,8 @@ public class ReviewService {
                 .map(result -> new ReviewWithUsername((Review) result[0], (String) result[1]))
                 .collect(Collectors.toList());
     }
+
+    public List<Review> getReviewsByGameId(Long gameId) {
+        return reviewRepository.findByGameId(gameId);
+    }
 }

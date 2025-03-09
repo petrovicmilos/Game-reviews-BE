@@ -1,10 +1,11 @@
 package com.gamereviews.gamereviews.dto;  // Paket za DTO-ove
 
 public class ReviewRequest {
-    private Long gameId;  // ID igre koja se recenzira
-    private Long userId;  // ID korisnika koji piše recenziju
-    private String content;  // Tekst recenzije
-    private int score;  // Ocena (npr. od 0 do 100)
+    private Long gameId;
+    private Long userId;
+    private String content;
+    private int score;
+    private String platform;
 
     // Getters i Setters
     public Long getGameId() {
@@ -37,5 +38,13 @@ public class ReviewRequest {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
     }
 }

@@ -65,6 +65,7 @@ public class ReviewController {
         review.setUser(user);
         review.setContent(reviewRequest.getContent());
         review.setScore(reviewRequest.getScore());
+        review.setPlatform(reviewRequest.getPlatform());
 
         // Save the Review entity
         Review savedReview = reviewService.saveReview(review);
@@ -124,5 +125,11 @@ public class ReviewController {
             @RequestParam(defaultValue = "4") int limit) {
         List<ReviewWithUsername> latestReviews = reviewService.findLatestReviewsByGameId(gameId, limit);
         return ResponseEntity.ok(latestReviews);
+    }
+
+    @GetMapping("/by-game/{gameId}")
+    public ResponseEntity<List<Review>> getReviewsByGameId(@PathVariable Long gameId) {
+        List<Review> reviews = reviewService.getReviewsByGameId(gameId);
+        return ResponseEntity.ok(reviews);
     }
 }
