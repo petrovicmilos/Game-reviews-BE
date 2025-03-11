@@ -1,6 +1,7 @@
 package com.gamereviews.gamereviews.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comments")
@@ -8,33 +9,28 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "game_id", nullable = true)
-    private Game game;
+    @Column(name = "blog_id", nullable = false)
+    private Long blogId;
 
-    @ManyToOne
-    @JoinColumn(name = "blog_id", nullable = true)
-    private Blog blog;
+    @Column(name = "news_id", nullable = false)
+    private Long newsId;
 
-    @ManyToOne
-    @JoinColumn(name = "news_id", nullable = true)
-    private News news;
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "likes", nullable = false)
-    private int likes;
+    private int likes = 0;
 
     @Column(name = "dislikes", nullable = false)
-    private int dislikes;
+    private int dislikes = 0;
 
     // Getters and Setters
     public Long getId() {
@@ -45,12 +41,12 @@ public class Comment {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getContent() {
@@ -61,28 +57,28 @@ public class Comment {
         this.content = content;
     }
 
-    public Game getGame() {
-        return game;
+    public Long getBlogId() {
+        return blogId;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setBlogId(Long blogId) {
+        this.blogId = blogId;
     }
 
-    public Blog getBlog() {
-        return blog;
+    public Long getNewsId() {
+        return newsId;
     }
 
-    public void setBlog(Blog blog) {
-        this.blog = blog;
+    public void setNewsId(Long newsId) {
+        this.newsId = newsId;
     }
 
-    public News getNews() {
-        return news;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setNews(News news) {
-        this.news = news;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public int getLikes() {

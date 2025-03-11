@@ -1,43 +1,37 @@
 package com.gamereviews.gamereviews.controller;
 
 import com.gamereviews.gamereviews.model.Comment;
-import com.gamereviews.gamereviews.service.CommentService;
+import com.gamereviews.gamereviews.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/comments")
 public class CommentController {
 
     @Autowired
-    private CommentService commentService;
+    private CommentRepository commentRepository;
 
-    @GetMapping
-    public List<Comment> getAllComments() {
-        return commentService.getAllComments();
+    // Dobavi sve komentare za određeni blog
+    @GetMapping("/by-blog/{blogId}")
+    public List<Comment> getCommentsByBlogId(@PathVariable Long blogId) {
+        return commentRepository.findByBlogId(blogId);
     }
 
-    @GetMapping("/{id}")
-    public Comment getCommentById(@PathVariable Long id) {
-        return commentService.getCommentById(id);
+    @GetMapping("/by-news/{newsId}")
+    public List<Comment> getCommentsByNewsId(@PathVariable Long newsId) {
+        return commentRepository.findByNewsId(newsId);
     }
 
     @PostMapping
-    public Comment createComment(@RequestBody Comment comment) {
-        return commentService.saveComment(comment);
+    public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
+        Comment savedComment = commentRepository.save(comment);
+        return ResponseEntity.ok(savedComment);
     }
 
-    @PutMapping("/{id}")
-    public Comment updateComment(@PathVariable Long id, @RequestBody Comment comment) {
-        comment.setId(id);
-        return commentService.saveComment(comment);
-    }
 
-    @DeleteMapping("/{id}")
-    public void deleteComment(@PathVariable Long id) {
-        commentService.deleteComment(id);
-    }
 }
- 
