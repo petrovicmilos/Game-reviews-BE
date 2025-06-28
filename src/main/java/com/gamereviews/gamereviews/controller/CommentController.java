@@ -4,6 +4,7 @@ import com.gamereviews.gamereviews.model.Comment;
 import com.gamereviews.gamereviews.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class CommentController {
     }
 
     @PostMapping
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
         Comment savedComment = commentRepository.save(comment);
         return ResponseEntity.ok(savedComment);

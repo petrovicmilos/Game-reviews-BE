@@ -17,10 +17,10 @@ public class Comment {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "blog_id", nullable = false)
+    @Column(name = "blog_id")
     private Long blogId;
 
-    @Column(name = "news_id", nullable = false)
+    @Column(name = "news_id")
     private Long newsId;
 
     @Column(name = "created_at", nullable = false)

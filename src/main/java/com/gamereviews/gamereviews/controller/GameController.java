@@ -31,11 +31,6 @@ public class GameController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-//    @PostMapping
-//    public Game createGame(@RequestBody Game game) {
-//        return gameRepository.save(game);
-//    }
-
     @GetMapping("/search")
     public List<Game> searchGames(@RequestParam String query) {
         return gameRepository.findByTitleContainingIgnoreCase(query);

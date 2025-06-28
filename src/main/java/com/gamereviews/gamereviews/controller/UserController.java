@@ -1,7 +1,9 @@
 package com.gamereviews.gamereviews.controller;
 
+import com.gamereviews.gamereviews.dto.AuthResponse;
 import com.gamereviews.gamereviews.model.User;
 import com.gamereviews.gamereviews.repository.UserRepository;
+import com.gamereviews.gamereviews.security.JwtUtil;
 import com.gamereviews.gamereviews.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,9 @@ public class UserController {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @GetMapping
     public List<User> getAllUsers() {
@@ -72,12 +77,14 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> loginUser(@RequestBody User loginRequest) {
+    public ResponseEntity<?> loginUser(@RequestBody User loginRequest) {
         Optional<User> userOpt = userService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
 
-        return userOpt.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.status(401).build());
+        if (userOpt.isPresent()) {
+            String token = jwtUtil.generateToken(userOpt.get());
+            return ResponseEntity.ok(new AuthResponse(token));
+        } else {
+            return ResponseEntity.status(401).build();
+        }
     }
-
-
 }
